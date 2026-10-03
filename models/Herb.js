@@ -43,17 +43,17 @@ const herbSchema = new mongoose.Schema(
         ],
         traditionalUses: [
             {
-                type: String,
-                trim: true,
+                use: {
+                    type: String,
+                    trim: true,
+                },
+                plantPart: {
+                    type: String,
+                    trim: true,
+                },
             },
         ],
         usageCategories: [
-            {
-                type: String,
-                trim: true,
-            },
-        ],
-        partsUsed: [
             {
                 type: String,
                 trim: true,
