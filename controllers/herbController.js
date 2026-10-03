@@ -3,7 +3,7 @@ const Herb = require("../models/Herb");
 const getAllHerbs = async (req, res) => {
     try {
 
-        const { search } = req.query;
+        const { search, sort } = req.query;
         const filter = search
             ? {
                 $or: [
@@ -14,7 +14,13 @@ const getAllHerbs = async (req, res) => {
             }
             : {};
 
-        const herbs = await Herb.find(filter);
+        let query = Herb.find(filter);
+
+        if (sort === "name") {
+            query = query.sort({ name: 1 });
+        }
+
+        const herbs = await query;
 
 
         res.json(herbs);
