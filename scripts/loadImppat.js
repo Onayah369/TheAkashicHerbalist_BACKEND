@@ -6,7 +6,7 @@ const filePath = path.join(__dirname, "..", "IMPPAT_TherapeuticUse_Plant_Associa
 const file = fs.readFileSync(filePath, 'utf8');
 const lines = file.split('\n').slice(1); 
 
-const herbs = {};
+const herbData = {};
 
 for (const line of lines) {
     const columns = line.split('\t');
@@ -17,27 +17,17 @@ for (const line of lines) {
 
     if (!scientificName || !therapeuticUse) continue;
 
-    if (!herbs[scientificName]) {
-        herbs[scientificName] = {
+    if (!herbData[scientificName]) {
+        herbData[scientificName] = {
             scientificName,
             traditionalUses: [],
         };
     }
 
-    herbs[scientificName].traditionalUses.push({
+    herbData[scientificName].traditionalUses.push({
         use: therapeuticUse,
         plantPart: plantPart || null,
     });
 }
 
-console.log(`Loaded ${Object.keys(herbs).length} herbs from IMPPAT.`);
-
-const firstHerbs = Object.values(herbs).slice(0, 10);
-
-firstHerbs.forEach((herb) => {
-    console.log("\n-------------------------------");
-    console.log(`Scientific Name: ${herb.scientificName}`);
-    console.log(`Number of uses: ${herb.traditionalUses.length}`);
-});
-
-module.exports = herbs;
+module.exports = herbData;
