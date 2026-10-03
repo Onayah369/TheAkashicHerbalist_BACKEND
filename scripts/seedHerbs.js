@@ -32,7 +32,7 @@ async function seedHerbs() {
             scientificName,
             family: trefleHerb.family || null,
             commonNames,
-            nativeRegions: [],
+            nativeRegions: trefleHerb.distribution?.native || [],
             traditionalUses: imppatHerb.traditionalUses,
             image: trefleHerb.image_url || null,
         });

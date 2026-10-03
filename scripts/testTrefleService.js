@@ -14,7 +14,11 @@ async function test() {
     );
 
     console.log("Family: " + plant?.family);
-    console.log("Distribution: " + plant?.distribution);
+
+console.log(
+    "Distribution:",
+    JSON.stringify(plant?.distribution, null, 2)
+);    
     console.log("Image: " + plant?.image_url);
 }
 

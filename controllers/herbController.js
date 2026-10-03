@@ -3,7 +3,7 @@ const Herb = require("../models/Herb");
 const getAllHerbs = async (req, res) => {
     try {
 
-        const { search, sort, usage } = req.query;
+        const { search, sort, usage, country } = req.query;
         const filter = {};
 
         if (search) {
@@ -17,6 +17,12 @@ const getAllHerbs = async (req, res) => {
             if (usage) {
                 filter["traditionalUses.use"] = { 
                     $regex: usage, 
+                    $options: "i" };
+            }
+
+            if (country) {
+                filter.nativeRegions = { 
+                    $regex: country, 
                     $options: "i" };
             }
 

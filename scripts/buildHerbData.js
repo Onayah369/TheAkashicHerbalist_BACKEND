@@ -29,7 +29,7 @@ async function buildHerbData() {
             scientificName,
             family: trefleHerb.family || null,
             commonNames: trefleHerb.common_names || [],
-            nativeRegions: [],
+            nativeRegions: trefleHerb.distribution?.native || [],
             traditionalUses: imppatHerb.traditionalUses,
             image: trefleHerb.image_url || null,
         };
