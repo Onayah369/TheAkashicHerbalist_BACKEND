@@ -3,16 +3,22 @@ const Herb = require("../models/Herb");
 const getAllHerbs = async (req, res) => {
     try {
 
-        const { search, sort } = req.query;
-        const filter = search
-            ? {
-                $or: [
+        const { search, sort, usage } = req.query;
+        const filter = {};
+
+        if (search) {
+                filter .$or = [
                     { name: { $regex: search, $options: "i" } },
                     { scientificName: { $regex: search, $options: "i" } },
                     { commonNames: { $regex: search, $options: "i" } }
-                ]
+                ];
             }
-            : {};
+
+            if (usage) {
+                filter["traditionalUses.use"] = { 
+                    $regex: usage, 
+                    $options: "i" };
+            }
 
         let query = Herb.find(filter);
 
