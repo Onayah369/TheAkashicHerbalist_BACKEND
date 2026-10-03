@@ -70,3 +70,5 @@ The application uses a .env file for private configuration.
 Required variables currently include:
 
 `MONGODB_URI`
+
+The `.env` file must not be committed to GitHub
