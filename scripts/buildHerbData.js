@@ -36,7 +36,7 @@ async function buildHerbData() {
 
         herbData.push(herb);
 
-        console.log(`✓ Added: ${herb.name}`);
+        console.log(`Added: ${herb.name}`);
     }
 
     console.log("\n===============================");
