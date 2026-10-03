@@ -25,10 +25,7 @@ async function seedHerbs() {
             continue;
         }
 
-        const commonNames = 
-            trefleHerb.common_names?.[0]?.en || 
-            trefleHerb.common_names?.[0]?.eng ||
-            [];
+        const commonNames = trefleHerb.common_names?.en || [];
 
         herbData.push({
             name: trefleHerb.common_name || scientificName,

@@ -2,7 +2,19 @@ const Herb = require("../models/Herb");
 
 const getAllHerbs = async (req, res) => {
     try {
-        const herbs = await Herb.find();
+
+        const { search } = req.query;
+        const filter = search
+            ? {
+                $or: [
+                    { name: { $regex: search, $options: "i" } },
+                    { scientificName: { $regex: search, $options: "i" } },
+                    { commonNames: { $regex: search, $options: "i" } }
+                ]
+            }
+            : {};
+
+        const herbs = await Herb.find(filter);
 
 
         res.json(herbs);
