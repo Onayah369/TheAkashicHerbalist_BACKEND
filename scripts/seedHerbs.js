@@ -6,6 +6,7 @@ const Herb = require("../models/Herb");
 const loadImppat = require("./loadImppat");
 const starterHerbs = require("./starterHerbs");
 const { getTreflePlant } = require("../services/trefleService");
+const { categorizeUses } = require("../utils/useCategories");
 
 async function seedHerbs() {
     await connectDB();
@@ -34,6 +35,7 @@ async function seedHerbs() {
             commonNames,
             nativeRegions: trefleHerb.distribution?.native || [],
             traditionalUses: imppatHerb.traditionalUses,
+            usageCategories: categorizeUses(imppatHerb.traditionalUses),
             image: trefleHerb.image_url || null,
         });
     }

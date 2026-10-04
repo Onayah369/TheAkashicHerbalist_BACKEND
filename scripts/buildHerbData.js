@@ -3,6 +3,7 @@ require("dotenv").config();
 const loadImppat = require("./loadImppat");
 const starterHerbs = require("./starterHerbs");
 const { getTreflePlant } = require("../services/trefleService");
+const { categorizeUses } = require("../utils/useCategories");
 
 async function buildHerbData() {
     const herbData = [];
@@ -31,6 +32,7 @@ async function buildHerbData() {
             commonNames: trefleHerb.common_names || [],
             nativeRegions: trefleHerb.distribution?.native || [],
             traditionalUses: imppatHerb.traditionalUses,
+            usageCategories: categorizeUses(imppatHerb.traditionalUses),
             image: trefleHerb.image_url || null,
         };
 
