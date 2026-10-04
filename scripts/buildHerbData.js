@@ -4,6 +4,7 @@ const loadImppat = require("./loadImppat");
 const starterHerbs = require("./starterHerbs");
 const { getTreflePlant } = require("../services/trefleService");
 const { categorizeUses } = require("../utils/useCategories");
+const { getContinent } = require("../utils/geography");
 
 async function buildHerbData() {
     const herbData = [];
@@ -29,8 +30,11 @@ async function buildHerbData() {
             name: trefleHerb.common_name || scientificName,
             scientificName,
             family: trefleHerb.family || null,
-            commonNames: trefleHerb.common_names || [],
+            commonNames: trefleHerb.common_names?.en || [],
             nativeRegions: trefleHerb.distribution?.native || [],
+            countries: trefleHerb.distribution?.native || [],
+            continents: (trefleHerb.distribution?.native || [])
+                .map(getContinent).filter(Boolean),
             traditionalUses: imppatHerb.traditionalUses,
             usageCategories: categorizeUses(imppatHerb.traditionalUses),
             image: trefleHerb.image_url || null,
