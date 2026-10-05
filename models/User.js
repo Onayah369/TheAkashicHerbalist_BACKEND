@@ -27,6 +27,12 @@ const userSchema = new mongoose.Schema(
             trim: true,
             maxlength: 500,
         },
+        favorites: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "Herb",
+            },
+        ],
     },
     {
         timestamps: true,
