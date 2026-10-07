@@ -19,7 +19,7 @@ const journalEntrySchema = new mongoose.Schema(
         },
         user: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "Herb",
+            ref: "User",
             required: true,
         },
         isPublic: {

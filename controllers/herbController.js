@@ -27,7 +27,7 @@ const getAllHerbs = async (req, res) => {
                 }
 
             if (country) {
-                filter.nativeRegions = { 
+                filter.countries = { 
                     $regex: country, 
                     $options: "i" };
             }

@@ -1,4 +1,3 @@
-const journalEntry = require("../models/JournalEntry");
 const Herb = require("../models/Herb");
 const JournalEntry = require("../models/JournalEntry");
 
@@ -136,7 +135,7 @@ const deleteJournalEntry = async (req, res) => {
             _id: req.params.entryId,
             user: req.user.userId,
         });
-        
+
         if (!entry) {
             return res.status(404).json({
                 message: "Journal entry not found",
