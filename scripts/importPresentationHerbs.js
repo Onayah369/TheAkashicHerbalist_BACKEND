@@ -99,6 +99,10 @@ const presentationHerbs = [
         scientificName: "Rubus idaeus",
         displayName: "Red Raspberry Leaf",
     },
+    {
+        scientificName: "Angelica archangelica",
+        displayName: "Angelica Root",
+    },
 ];
 
 async function importPresentationHerbs() {
