@@ -27,6 +27,12 @@ const register = async (req, res) => {
             password,
         });
 
+        const token = jwt.sign(
+            { userId: user._id },
+            process.env.JWT_SECRET,
+            { expiresIn: "7d" }
+        );
+
         res.status(201).json({
             message: "User registered successfully",
             user: {
@@ -34,6 +40,7 @@ const register = async (req, res) => {
                 username: user.username,
                 email: user.email,
             },
+            token,
         });
     } catch (error) {
         res.status(500).json({
@@ -118,13 +125,12 @@ const login = async (req, res) => {
 
         const updateProfile = async (req, res) => {
             try {
-                const { bio, profilePicture } = req.body;
+                const { bio } = req.body;
 
                 const user = await User.findByIdAndUpdate(
                     req.user.userId,
                     {
                         bio,
-                        profilePicture,
                     },
                     {
                         new: true,
