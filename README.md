@@ -8,6 +8,12 @@ The Akashic Herbalist backend provides the API and database infrastructure for t
 
 The API is built with Express and MongoDB and uses Mongoose for database modeling. JWT authentication protects user-specific resources, while external plant data sources are used to supplement the application's curated herbal knowledge library.
 
+## Deployment
+
+* **Live API:** https://theakashicherbalist-backend.onrender.com
+* **Frontend Application:** https://theakashicherbalist-frontend.onrender.com
+
+
 ## Getting Started
 
 ### Dependencies
